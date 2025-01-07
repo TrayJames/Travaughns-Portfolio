@@ -21,13 +21,11 @@ const Hero = () => {
       >
 				<TextGenerateEffect 
 					className="text-[40px] lg:text-6xl md:text-7xl font-bold dark:text-white text-center"
-					words="An Aspiring CyberSecurity Professional"
+					words="Hi I`m  Tra-Vaughn James"
 				/>
-        {/* <div className="text-3xl md:text-7xl font-bold dark:text-white text-center">
-          Background lights are cool you know.
-        </div> */}
-        <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
-          Hi I`m  Tra-Vaughn James
+      
+        <div className="md:text-center sm:text-center font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
+        Information Security Policy & Management Student at Carnegie Mellon University
         </div>
 
 				<a href="#projects"> 
