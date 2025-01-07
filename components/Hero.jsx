@@ -1,7 +1,10 @@
 import React from 'react'
 import '../src/index.css'
+import { FaLocationArrow } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { AuroraBackground } from './ui/aurora-background'
+import { TextGenerateEffect } from './ui/TextGenerateEffect';
+import MagicButton from './ui/MagicButton';
 
 const Hero = () => {
   return (
@@ -16,15 +19,24 @@ const Hero = () => {
         }}
         className="relative flex flex-col gap-4 items-center justify-center px-4"
       >
-        <div className="text-3xl md:text-7xl font-bold dark:text-white text-center">
+				<TextGenerateEffect 
+					className="text-[40px] lg:text-6xl md:text-7xl font-bold dark:text-white text-center"
+					words="An Aspiring CyberSecurity Professional"
+				/>
+        {/* <div className="text-3xl md:text-7xl font-bold dark:text-white text-center">
           Background lights are cool you know.
-        </div>
+        </div> */}
         <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
-          And this, is chemical burn.
+          Hi I`m  Tra-Vaughn James
         </div>
-        <button className="bg-black dark:bg-white rounded-full w-fit text-white dark:text-black px-4 py-2">
-          Debug now
-        </button>
+
+				<a href="#projects"> 
+					<MagicButton
+						title="View My Projects"
+						icon ={<FaLocationArrow />}
+						position="right"
+					/> 
+				</a>
       </motion.div>
     </AuroraBackground>
   )
