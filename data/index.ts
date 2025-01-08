@@ -1,3 +1,4 @@
+
 export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
@@ -13,14 +14,14 @@ export const gridItems = [
     className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
     imgClassName: "w-full h-full",
     titleClassName: "justify-end",
-    img: "/b1.svg",
+    img: "./b1.svg",
     spareImg: "",
   },
   {
     id: 2,
-    title: "Skills and Technologies",
-    description: "I constantly try to improve",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-2",
+    title: `Technologies`,
+    description: "",
+    className: "lg:col-span-2 md:col-span-6 md:row-span-4",
     imgClassName: "",
     titleClassName: "justify-center",
     img: "",
