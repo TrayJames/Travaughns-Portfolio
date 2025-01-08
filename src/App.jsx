@@ -7,6 +7,7 @@ import { ThemeProvider } from "../components/theme-provider"
 import Hero from '../components/Hero'
 import Grid from '../components/Grid';
 import RecentProjects from '../components/RecentProjects';
+import Footer from '../components/Footer';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <div className="max-w-7xl w-full">
             <Grid />
             <RecentProjects />
+            <Footer />
           </div>
         </main>
     </ThemeProvider>

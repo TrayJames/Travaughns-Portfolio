@@ -43,7 +43,7 @@ export const projects = [
     des: "Excercised application security tools and common application vulnerabilities via OWASPS Web Goat",
     img: "/p2.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-    link: "https://github.com/adrianhajdin/zoom-clone",
+    link: "https://github.com/TrayJames/SOAR-Automation-Project",
   },
   {
     id: 3,
@@ -55,11 +55,11 @@ export const projects = [
   },
   {
     id: 4,
-    title: "Chef Claude",
-    des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
+    title: "Undergrade Capstone Project",
+    des: "Developing an Ancient DNA/Whole Genome pipeline to streamline Bioinformatics research",
     img: "/p4.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
-    link: "https://github.com/TrayJames/Chef-Claude",
+    link: "https://portfolios.cs.earlham.edu/index.php/students/2023-2/cs488/tra-vaughn-james/",
   },
 ];
 
@@ -68,14 +68,12 @@ export const projects = [
 export const socialMedia = [
   {
     id: 1,
-    img: "/git.svg",
-  },
-  {
-    id: 2,
-    img: "/twit.svg",
+    img: "./git.svg",
+    link: "https://github.com/TrayJames",
   },
   {
     id: 3,
-    img: "/link.svg",
+    img: "./link.svg",
+    link: "https://www.linkedin.com/in/tra-vaughn-james-39aa04192/"
   },
 ];
