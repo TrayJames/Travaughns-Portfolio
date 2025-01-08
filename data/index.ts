@@ -2,7 +2,6 @@
 export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
-  { name: "Testimonials", link: "#testimonials" },
   { name: "Contact", link: "#contact" },
 ];
 
@@ -19,7 +18,7 @@ export const gridItems = [
   },
   {
     id: 2,
-    title: `Technologies`,
+    title: `Tech Stack`,
     description: "",
     className: "lg:col-span-2 md:col-span-6 md:row-span-4",
     imgClassName: "",
@@ -41,7 +40,7 @@ export const projects = [
   {
     id: 2,
     title: "OWASP Web Goat",
-    des: "Excercised application security tools and common application vulnerabilities",
+    des: "Excercised application security tools and common application vulnerabilities via OWASPS Web Goat",
     img: "/p2.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
     link: "https://github.com/adrianhajdin/zoom-clone",
@@ -52,15 +51,15 @@ export const projects = [
     des: "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
     img: "/p3.svg",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
-    link: "https://github.com/adrianhajdin/ai_saas_app",
+    link: "https://github.com/TrayJames/Chef-Claude",
   },
   {
     id: 4,
-    title: "Animated Apple Iphone 3D Website",
+    title: "Chef Claude",
     des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
     img: "/p4.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
-    link: "https://github.com/adrianhajdin/iphone",
+    link: "https://github.com/TrayJames/Chef-Claude",
   },
 ];
 
