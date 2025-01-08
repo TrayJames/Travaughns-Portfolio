@@ -31,8 +31,8 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
-    title: "SOAR Automation",
-    des: "Project utilized SOAR platform Shuffle to Automate Incident Response",
+    title: "SOAR Automation Project",
+    des: "Automated incident response using Wazuh, TheHive, and Shuffle SOAR",
     img: "/p1.svg",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
     link: "https://github.com/TrayJames/SOAR-Automation-Project",
@@ -48,7 +48,7 @@ export const projects = [
   {
     id: 3,
     title: "Chef Claud",
-    des: "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
+    des: "React Application using Claude AI API. Just enter some ingredients and Chef Claude will give you a delicious recipe!",
     img: "/p3.svg",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
     link: "https://github.com/TrayJames/Chef-Claude",
