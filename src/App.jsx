@@ -6,6 +6,7 @@ import { ThemeProvider } from "../components/theme-provider"
 
 import Hero from '../components/Hero'
 import Grid from '../components/Grid';
+import RecentProjects from '../components/RecentProjects';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <main className="relative bg-zinc-50 dark:bg-zinc-900 flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5">
           <div className="max-w-7xl w-full">
             <Grid />
+            <RecentProjects />
           </div>
         </main>
     </ThemeProvider>
