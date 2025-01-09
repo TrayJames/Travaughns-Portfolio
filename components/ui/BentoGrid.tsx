@@ -99,7 +99,7 @@ export const BentoGridItem = ({
           <div
             className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
           >
-            {id === 1 ? <a href="/assets/NN_Tra-Vaughn_James_Resume_Fall_ 2024.docx.pdf" target="_blank"> {title}</a> : title}
+            {id === 1 ? <a href="/Travaughns-Portfolio/assets/NN_Tra-Vaughn_James_Resume.pdf" target="_blank"> {title}</a> : title}
           </div>
 
           {/* Tech stack list div */}
