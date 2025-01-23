@@ -39,14 +39,22 @@ export const projects = [
   },
   {
     id: 2,
-    title: "OWASP Web Goat",
-    des: "Excercised application security tools and common application vulnerabilities via OWASPS Web Goat",
-    img: "/p2.svg",
+    title: "Cyber Deception Lab",
+    des: "Using various tools and techniques, I demonstrate the use of cyber deception strategies to thwart attackers",
+    img: "./CyberDeception.png",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-    link: "https://github.com/TrayJames/Web-Goat",
+    link: "https://github.com/TrayJames/Cyber_Deception-Tools_and_Techniques",
   },
   {
     id: 3,
+    title: "Log4j: Exploitation, Mitigation, and Prevention",
+    des: "Walk through of a Log4j exploitation against a Minecraft server, illustrating mitigation and prevention strategies",
+    img: "./SteveHacked.png",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
+    link: "https://github.com/TrayJames/Log4j-Exploitation_Prevention_Mitigation",
+  },
+  {
+    id: 4,
     title: "Chef Claude",
     des: "React Application using Claude AI API. Just enter some ingredients and Chef Claude will give you a delicious recipe!",
     img: "./ChefClaude.png",
@@ -54,13 +62,14 @@ export const projects = [
     link: "https://github.com/TrayJames/Chef-Claude",
   },
   {
-    id: 4,
+    id: 5,
     title: "Undergrade Capstone Project",
     des: "Developing an Ancient DNA/Whole Genome pipeline to streamline Bioinformatics research",
     img: "./WDLWorkflow.png",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
     link: "https://portfolios.cs.earlham.edu/index.php/students/2023-2/cs488/tra-vaughn-james/",
   },
+  
 ];
 
 
