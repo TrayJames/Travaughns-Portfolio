@@ -42,7 +42,7 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
-  const leftLists = ["PFsense", "WireShark", "Linux/Unix", "Splunk","Elastic Stack", "SiLK" ];
+  const leftLists = ["PFsense", "WireShark", "Linux/Unix", "Splunk","ELK Stack", "SiLK" ];
   const rightLists = [ "ReactJS", "Snort", "Java", "Python", "Bash", "Powershell", "SQL"];
   
   return (
