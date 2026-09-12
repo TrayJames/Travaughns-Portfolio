@@ -8,11 +8,13 @@ import Hero from '../components/Hero'
 import Grid from '../components/Grid';
 import RecentProjects from '../components/RecentProjects';
 import Footer from '../components/Footer';
+import ThemeToggle from '../components/ui/ThemeToggle';
 
 
 function App() {
   return (
-     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+        <ThemeToggle />
         <Hero />
         <main className="relative bg-zinc-50 dark:bg-zinc-900 flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5">
           <div className="max-w-7xl w-full">

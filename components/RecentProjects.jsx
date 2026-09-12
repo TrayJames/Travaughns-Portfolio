@@ -27,10 +27,11 @@ const RecentProjects = () => {
                                     className="z-10 absolute bottom-0"
                                     />
                                 </div>
-                                <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1 mb-3">
-                                   {title} 
+                                {/* The pin card is always dark, so pin the text light in both themes. */}
+                                <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1 mb-3 text-white">
+                                   {title}
                                 </h1>
-                                <p className="lg:text-xl lg:font-normal font-light text-base line-clamp-2">
+                                <p className="lg:text-xl lg:font-normal font-light text-base line-clamp-2 text-white-100">
                                     {des}
                                 </p>
 

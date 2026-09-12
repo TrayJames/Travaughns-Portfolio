@@ -97,7 +97,8 @@ export const BentoGridItem = ({
           {/* add text-3xl max-w-96 , remove text-neutral-600 dark:text-neutral-300*/}
           {/* remove mb-2 mt-2 */}
           <div
-            className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
+            // This card is always dark, so pin the text light in both themes.
+            className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10 text-white`}
           >
             {id === 1 ? <a href="./Tra-Vaughn-James-Resume.pdf" target="_blank" rel="noopener noreferrer"> {title}</a> : title}
 

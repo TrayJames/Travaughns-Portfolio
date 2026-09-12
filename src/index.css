@@ -1,6 +1,136 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/*
+  Tailwind v4 replaces `darkMode: ["class"]` from the old JS config.
+  Matches the `.dark` class that components/theme-provider.tsx puts on <html>.
+*/
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Static brand palette, migrated from theme.extend.colors in the old
+  tailwind.config.js. In v4 a color utility exists for any --color-* variable,
+  so --color-purple gives you text-purple / bg-purple, and so on.
+*/
+@theme {
+  --color-black: #000;
+  --color-black-100: #000319;
+  --color-black-200: rgba(17, 25, 40, 0.75);
+  --color-black-300: rgba(255, 255, 255, 0.125);
+
+  --color-white: #fff;
+  --color-white-100: #bec1dd;
+  --color-white-200: #c1c2d3;
+
+  --color-blue-100: #e4ecff;
+  --color-purple: #cbacf9;
+
+  /*
+    v4 ships no --color-transparent, but components/ui/aurora-background.jsx
+    reads var(--color-transparent) in its gradient and mask. Keep this.
+  */
+  --color-transparent: transparent;
+
+  /*
+    Aurora palette, pinned to Tailwind v3's hex values.
+
+    v4 re-authored its default palette in oklch, which shifted these five
+    shades enough to visibly change the aurora - its blur + invert +
+    mix-blend-difference stack amplifies small color differences. These are
+    the only consumers of these shades (see aurora-background.jsx), so
+    pinning them here restores the original look without affecting anything
+    else. Delete these five lines to go back to v4's oklch palette.
+  */
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-indigo-300: #a5b4fc;
+  --color-violet-200: #ddd6fe;
+
+  --animate-aurora: aurora 60s linear infinite;
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+
+  @keyframes aurora {
+    from {
+      background-position: 50% 50%, 50% 50%;
+    }
+    to {
+      background-position: 350% 50%, 350% 50%;
+    }
+  }
+
+  @keyframes spotlight {
+    0% {
+      opacity: 0;
+      transform: translate(-72%, -62%) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -40%) scale(1);
+    }
+  }
+}
+
+/*
+  These resolve through the HSL triplets defined in :root / .dark below, so
+  they have to be `inline` - that makes the utility emit hsl(var(--border))
+  directly instead of pointing at a snapshot, which is what lets the .dark
+  overrides actually take effect.
+*/
+@theme inline {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+/*
+  v4 changed the default border color to currentcolor. The `*` rule further
+  down re-applies border-border, but that selector does not reach these
+  pseudo-elements, so they still need the old gray-200 default.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility heading {
+  @apply font-bold text-4xl md:text-5xl text-center;
+}
+
+@utility black-gradient {
+  background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
+}
 
 @layer base {
   :root {
@@ -68,22 +198,48 @@
 
 @layer base {
   * {
-    @apply border-border !scroll-smooth;
+    @apply border-border scroll-smooth!;
   }
   body {
     @apply bg-background text-foreground;
   }
   button {
-    @apply active:outline-none;
+    @apply active:outline-hidden;
   }
 }
 
-@layer utilities {
-  .heading {
-    @apply font-bold text-4xl md:text-5xl text-center;
+/*
+  Smooth light/dark switching.
+
+  components/theme-provider.tsx adds .theme-transition to <html> for the
+  duration of a theme change, then removes it. Keeping it temporary matters:
+  an always-on global transition would fight the transform/opacity animations
+  on the project pins and the aurora.
+
+  `filter` is included on purpose - the aurora is inverted in light mode
+  (invert dark:invert-0), so easing it is what stops the hero from snapping.
+  `transform` and `opacity` are deliberately left out.
+
+  Duration must stay in sync with THEME_TRANSITION_MS in the provider.
+*/
+@layer base {
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition-property: color, background-color, border-color,
+      text-decoration-color, fill, stroke, outline-color, box-shadow, filter;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .black-gradient {
-    background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
+  /* Honour a reduced-motion preference: switch instantly instead. */
+  @media (prefers-reduced-motion: reduce) {
+    .theme-transition,
+    .theme-transition *,
+    .theme-transition *::before,
+    .theme-transition *::after {
+      transition-duration: 0ms;
+    }
   }
 }
