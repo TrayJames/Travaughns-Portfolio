@@ -4,6 +4,20 @@ on:
   push:
     branches:
       - main
+  # Allows re-running a deploy from the Actions tab without pushing a commit.
+  workflow_dispatch:
+
+# Least privilege by default: the build job only ever needs to read the repo.
+# The deploy job widens this for itself below. Nothing here can write to the
+# repository, so the gh-pages branch is now frozen as a rollback target.
+permissions:
+  contents: read
+
+# Let an in-flight deploy finish rather than cancelling it midway through
+# publishing, but queue any newer run behind it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -12,38 +26,48 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
+
+      # Fails early with a clear message if Settings > Pages > Source is not
+      # set to "GitHub Actions".
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v7
+        with:
+          # Vite 8 requires ^20.19.0 || >=22.12.0 - do not unpin this.
+          node-version: 22
+          cache: npm
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: npm ci
 
       - name: Build project
         run: npm run build
 
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v3
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
         with:
-          name: production-files
           path: ./dist
 
   deploy:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+
+    # Scoped to this job only, so `npm ci` in the build job never runs with a
+    # token that can publish. Note this replaces the top-level permissions
+    # block rather than adding to it - deploy-pages needs no repo access.
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: production-files
-          path: ./dist
-
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+        id: deployment
+        uses: actions/deploy-pages@v5
